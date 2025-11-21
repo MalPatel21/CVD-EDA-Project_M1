@@ -17,6 +17,7 @@ if(!require(DT)) install.packages("knitr", repos = "http://cran.us.r-project.org
 if(!require(car)) install.packages("car")
 if(!require(skimr)) install.packages("skimr")
 if(!require(pROC)) install.packages("pROC")
+if (!require(tibble)) install.packages("tibble")
 
 library(readr)
 library(skimr)
@@ -29,6 +30,7 @@ library(knitr)
 library(DT)
 library(car)
 library(tibble)
+library(tableone)
 ```
 
 # Coversheet
@@ -341,6 +343,23 @@ ggplot(ddata_clean, aes(x = pp, fill = cardio)) +
 
 ## Final Results
 
+### Cohort characteristic table
+
+``` {r cohort_characteristic, echo = FALSE}
+
+# Define variables
+vars <- c("age", "pp", "gender", "cholesterol", "gluc")
+factor_vars <- c("gender", "cholesterol", "gluc")
+
+# Create TableOne object stratified by CVD status
+tab1 <- CreateTableOne(vars = vars, strata = "cardio", data = ddata_clean, factorVars = factor_vars)
+
+# Print table to data frame
+tab1_df <- as.data.frame(print(tab1, showAllLevels = TRUE, quote = FALSE, noSpaces = TRUE))
+
+
+```
+
 ### Check for collinearity
 
 Figure 8.0 displays the VIF values for each variable. All values were close to 1, indicating minimal to no multicollinearity between the predictors. These results confirm that multicollinearity is not a concern, allowing for a reliable interpretation of the logistic regression coefficients.
@@ -361,8 +380,6 @@ vif_df <- as.data.frame(vif_values) %>%
 # Display VIF table
 kable(vif_df, caption = "Variance Inflation Factors [Figure 8.0]")
 ```
-
-
 
 ### Coefficients Matrix
 
@@ -450,7 +467,7 @@ Limitations of this study include the missing data source, the cross-sectional d
 
 # Conclusion
 
-This study identified key predictors for CVD. It demonstrated that increasing age, elevated blood pressure, and elevated cholesterol exhibit positive associations with developing CVD. Unexpectedly, increased glucose levels showed an inverse relationship, and gender proved to be an insignificant predictor for CVD risk. These conclusions were derived from the summary() function (Figure 8.1) and the odds ratio graph (Figure 8.2). The multivariable logistic regression model displayed moderate discrimination in distinguishing between patients with and without CVD, supported by the ROC AUC score of 0.7498. Collectively, these findings underpin the multifactorial nature of CVD risk, the value of analysing these factors in conjunction, and the importance of utilising data to identify risk factors for prevention. Despite constraints from data entry errors and the use of categorical variables (glucose and cholesterol), the results provide a clear foundation for deeper exploration.
+This study identified key predictors for CVD, showing that increasing age, elevated blood pressure, and higher cholesterol are positively associated with its development. Unexpectedly, increased glucose levels showed an inverse relationship, and gender proved to be an insignificant predictor for CVD risk. These conclusions were derived from the summary() function (Figure 8.1) and the odds ratio graph (Figure 8.2). The multivariable logistic regression model displayed moderate discrimination in distinguishing between patients with and without CVD, supported by the ROC AUC score of 0.7498. Collectively, these findings underpin the multifactorial nature of CVD risk, the value of analysing these factors in conjunction, and the importance of utilising data to identify risk factors for prevention. Despite constraints from data entry errors and the use of categorical variables (glucose and cholesterol), the results provide a clear foundation for deeper exploration.
 
 
 # References
