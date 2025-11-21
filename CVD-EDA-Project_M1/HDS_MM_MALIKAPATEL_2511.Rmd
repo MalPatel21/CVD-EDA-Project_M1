@@ -3,8 +3,8 @@ title: "CVD Analysis"
 author: "mp2242@ice.cam.ac.uk"
 output: 
   rmdformats::readthedown:
-bibliography: bibliography/references.bib
-csl: bibliography/ieee.csl
+bibliography: https://raw.githubusercontent.com/MalPatel21/CVD-EDA-Project_M1/refs/heads/main/CVD-EDA-Project_M1/bibliography/references.bib
+csl: https://raw.githubusercontent.com/MalPatel21/CVD-EDA-Project_M1/refs/heads/main/CVD-EDA-Project_M1/bibliography/ieee.csl
                
 ---
 
@@ -33,10 +33,10 @@ library(tibble)
 
 # Coversheet
 
-![coversheet_pg1](coversheet/coversheet_pg1.png)
-![coversheet_pg2](coversheet/coversheet_pg2.png) 
-![coversheet_pg3](coversheet/coversheet_pg3.png) 
-![coversheet_pg4](coversheet/coversheet_pg4.png) 
+![coversheet_pg1](https://raw.githubusercontent.com/MalPatel21/CVD-EDA-Project_M1/refs/heads/main/CVD-EDA-Project_M1/coversheet/coversheet_pg1.png)
+![coversheet_pg2](https://raw.githubusercontent.com/MalPatel21/CVD-EDA-Project_M1/refs/heads/main/CVD-EDA-Project_M1/coversheet/coversheet_pg2.png) 
+![coversheet_pg3](https://raw.githubusercontent.com/MalPatel21/CVD-EDA-Project_M1/refs/heads/main/CVD-EDA-Project_M1/coversheet/coversheet_pg3.png) 
+![coversheet_pg4](https://raw.githubusercontent.com/MalPatel21/CVD-EDA-Project_M1/refs/heads/main/CVD-EDA-Project_M1/coversheet/coversheet_pg4.png) 
 
 # Abstract 
 
